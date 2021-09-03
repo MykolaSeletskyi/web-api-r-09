@@ -1,4 +1,5 @@
-const ContactItem = () => {
+const ContactItem = ({ Name, Image }) => {
+
     return (
         <div className="unit">
             <div className="field name">
@@ -9,7 +10,7 @@ const ContactItem = () => {
 
                 </div>
                 <div>
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="image" className="avatar" /> Alexander Verdnam
+                    <img src={Image} alt="image" className="avatar" /> {Name}
                 </div>
                 <div className="lab lab-warning">Friends</div>
             </div>

@@ -13,7 +13,7 @@ class App extends Component {
       {
         Id: 1,
         Name: "Alexander Verdnam",
-        Image: "https://bootdey.com/img/Content/avatar/avatar1.png",
+        Image: "https://api.randomuser.me/portraits/men/5.jpg",
         TelNumber: "+1-800-600-9898",
         Email: "example@gmail.com",
         Status: "Friend"
@@ -21,7 +21,7 @@ class App extends Component {
       {
         Id: 2,
         Name: "Gerard Butler",
-        Image: "https://bootdey.com/img/Content/avatar/avatar2.png",
+        Image: "https://api.randomuser.me/portraits/men/82.jpg",
         TelNumber: "+1-800-480-9348",
         Email: "gb@gmail.com",
         Status: "Work"
@@ -29,7 +29,7 @@ class App extends Component {
       {
         Id: 3,
         Name: "Anna Lee",
-        Image: "https://bootdey.com/img/Content/avatar/avatar2.png",
+        Image: "https://api.randomuser.me/portraits/women/43.jpg",
         TelNumber: "+1-800-091-1234",
         Email: "lee@gmail.com",
         Status: "Private"

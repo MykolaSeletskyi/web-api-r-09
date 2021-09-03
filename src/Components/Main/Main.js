@@ -1,7 +1,7 @@
 // Import contact list
 import ContactList from "../ContactList/ContactList";
 
-const Main = () => {
+const Main = ({ List }) => {
     return (
         <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="contacts-list">
@@ -40,7 +40,7 @@ const Main = () => {
                             </div>
                         </div>
                     </div>
-                    <ContactList />
+                    <ContactList List={List} />
                 </form>
             </div>
         </div>

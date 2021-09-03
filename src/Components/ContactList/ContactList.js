@@ -2,9 +2,13 @@
 import ContactItem from "../ContactList/ContactItem/ContactItem";
 
 const ContactList = ({ List }) => {
-    console.log("ContactList ", List);
+
+    const item = List.map(listItem => {
+        return (<ContactItem key={listItem.Id} />)
+    })
+
     return (
-        <ContactItem />
+        <div>{item}</div>
     )
 }
 

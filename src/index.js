@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     ContactList: [
       {
+        Id: 1,
         Name: "Alexander Verdnam",
         Image: "https://bootdey.com/img/Content/avatar/avatar1.png",
         TelNumber: "+1-800-600-9898",
@@ -18,6 +19,7 @@ class App extends Component {
         Status: "Friend"
       },
       {
+        Id: 2,
         Name: "Gerard Butler",
         Image: "https://bootdey.com/img/Content/avatar/avatar2.png",
         TelNumber: "+1-800-480-9348",
@@ -25,6 +27,7 @@ class App extends Component {
         Status: "Work"
       },
       {
+        Id: 3,
         Name: "Anna Lee",
         Image: "https://bootdey.com/img/Content/avatar/avatar2.png",
         TelNumber: "+1-800-091-1234",
@@ -37,8 +40,8 @@ class App extends Component {
   render() {
     const { ContactList } = this.state;
     return (
-      <div class="container bootstrap snippets bootdeys bootdey" >
-        <div class="row decor-default">
+      <div className="container bootstrap snippets bootdeys bootdey" >
+        <div className="row decor-default">
           <SideBar />
           <Main List={ContactList} />
         </div>

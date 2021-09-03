@@ -10,7 +10,6 @@ body{
 .contacts-labels .title {
     font-size: 16px;
     line-height: 112px;
-    background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-42.png") 0 50% no-repeat;
     padding: 0 0 0 32px;
     color: #333333;
     overflow: hidden;
@@ -251,13 +250,10 @@ input {
     line-height: 46px;
 }
 .contacts-list .icons .icon-folder {
-    background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-9.png") no-repeat 50% 50%;
 }
 .contacts-list .icons .icon-label {
-    background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-5.png") no-repeat 50% 50%;
 }
 .contacts-list .icons .icon-trash {
-    background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-10.png") no-repeat 50% 50%;
 }
 .contacts-list .icons .icon {
     display: inline-block;

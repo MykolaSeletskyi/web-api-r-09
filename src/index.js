@@ -38,7 +38,22 @@ class App extends Component {
   }
 
   onChangeStatus = (Id) => {
-    console.log("Id = ", Id);
+    const index = this.state.ContactList.findIndex(elem => elem.Id === Id);
+    let contact = this.state.ContactList[index];
+    switch (contact.Status) {
+      case 'Work': contact.Status = "Friend";
+        break;
+      case "Friend": contact.Status = "Family";
+        break;
+      case "Family": contact.Status = "Private";
+        break;
+      case "Private": contact.Status = "Work";
+    }
+    const tmpList = this.state.ContactList.slice();
+    tmpList[index] = contact;
+    this.setState({
+      ContactList: tmpList
+    })
   }
 
   render() {

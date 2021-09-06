@@ -1,7 +1,7 @@
 // Import contact list
 import ContactList from "../ContactList/ContactList";
 
-const Main = ({ List }) => {
+const Main = ({ List, onChangeStatus }) => {
     return (
         <div className="col-lg-9 col-md-8 col-sm-12">
             <div className="contacts-list">
@@ -40,7 +40,7 @@ const Main = ({ List }) => {
                             </div>
                         </div>
                     </div>
-                    <ContactList List={List} />
+                    <ContactList List={List} onChangeStatus={onChangeStatus} />
                 </form>
             </div>
         </div>

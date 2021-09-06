@@ -14,7 +14,7 @@ class App extends Component {
         Id: 1,
         Name: "Alexander Verdnam",
         Image: "https://api.randomuser.me/portraits/men/5.jpg",
-        TelNumber: "+1-800-600-9898",
+        Phone: "+1-800-600-9898",
         Email: "example@gmail.com",
         Status: "Friend"
       },
@@ -22,7 +22,7 @@ class App extends Component {
         Id: 2,
         Name: "Gerard Butler",
         Image: "https://api.randomuser.me/portraits/men/82.jpg",
-        TelNumber: "+1-800-480-9348",
+        Phone: "+1-800-480-9348",
         Email: "gb@gmail.com",
         Status: "Work"
       },
@@ -30,11 +30,15 @@ class App extends Component {
         Id: 3,
         Name: "Anna Lee",
         Image: "https://api.randomuser.me/portraits/women/43.jpg",
-        TelNumber: "+1-800-091-1234",
+        Phone: "+1-800-091-1234",
         Email: "lee@gmail.com",
         Status: "Private"
       }
     ]
+  }
+
+  onChangeStatus = (Id) => {
+    console.log("Id = ", Id);
   }
 
   render() {
@@ -43,7 +47,7 @@ class App extends Component {
       <div className="container bootstrap snippets bootdeys bootdey" >
         <div className="row decor-default">
           <SideBar />
-          <Main List={ContactList} />
+          <Main List={ContactList} onChangeStatus={this.onChangeStatus} />
         </div>
       </div>
     )

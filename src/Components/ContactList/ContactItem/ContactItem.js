@@ -1,4 +1,16 @@
-const ContactItem = ({ Name, Image }) => {
+const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus }) => {
+
+    let defaultStatusColor = ""
+
+    switch (Status) {
+        case 'Work': defaultStatusColor = "lab lab-success";
+            break;
+        case "Friend": defaultStatusColor = "lab lab-warning"
+            break;
+        case "Family": defaultStatusColor = "lab lab-primary"
+            break;
+        case "Private": defaultStatusColor = "lab lab-danger"
+    }
 
     return (
         <div className="unit">
@@ -12,14 +24,14 @@ const ContactItem = ({ Name, Image }) => {
                 <div>
                     <img src={Image} alt="image" className="avatar" /> {Name}
                 </div>
-                <div className="lab lab-warning">Friends</div>
+                <div className={defaultStatusColor} onClick={onChangeStatus} >{Status}</div>
             </div>
             <div className="field phone">
-                +1-800-600-9898
-              </div>
+                {Phone}
+            </div>
             <div className="field email">
-                example@gmail.com
-              </div>
+                {Email}
+            </div>
         </div>
     )
 }

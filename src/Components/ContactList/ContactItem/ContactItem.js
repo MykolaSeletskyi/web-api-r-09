@@ -1,4 +1,4 @@
-const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus }) => {
+const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus, onDelete }) => {
 
     let defaultStatusColor = ""
 
@@ -31,6 +31,10 @@ const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus }) => {
             </div>
             <div className="field email">
                 {Email}
+            </div>
+            <div className="icons">
+                <i className="far fa-edit fa-2x"></i>
+                <i className="far fa-trash-alt fa-2x" onClick={onDelete} ></i>
             </div>
         </div>
     )

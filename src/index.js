@@ -56,13 +56,26 @@ class App extends Component {
     })
   }
 
+  onDelete = (Id) => {
+    const index = this.state.ContactList.findIndex(elem => elem.Id === Id);
+
+    const partOne = this.state.ContactList.slice(0, index);
+    const partTwo = this.state.ContactList.slice(index + 1);
+    const tmpList = [...partOne, ...partTwo];
+
+    this.setState({
+      ContactList: tmpList
+    })
+
+  }
+
   render() {
     const { ContactList } = this.state;
     return (
       <div className="container bootstrap snippets bootdeys bootdey" >
         <div className="row decor-default">
           <SideBar />
-          <Main List={ContactList} onChangeStatus={this.onChangeStatus} />
+          <Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />
         </div>
       </div>
     )

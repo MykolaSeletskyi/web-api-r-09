@@ -3,11 +3,13 @@ import { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Import styles
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 // Import Components
 import Main from "./Components/Main/Main";
 import NotFound from "./Components/NotFound/NotFound";
+import AddNewContact from "./Components/AddContact/AddContact";
 
 class App extends Component {
 
@@ -80,6 +82,7 @@ class App extends Component {
           <Router>
             <Switch>
               <Route path="/" exact render={() => (<Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
+              <Route path="/add-new-contact" exact component={AddNewContact} />
               <Route path="*" component={NotFound} />
             </Switch>
           </Router>

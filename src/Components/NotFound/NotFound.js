@@ -1,6 +1,13 @@
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
+
 const NotFound = () => {
     return (
-        <h2>404 Not Found</h2>
+        <Fragment>
+            <h2>404 Not Found</h2>
+            <Link to="/" className="notFoundButton" >Go to home page</Link>
+        </Fragment>
+
     )
 }
 

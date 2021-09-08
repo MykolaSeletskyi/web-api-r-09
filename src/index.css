@@ -1,4 +1,3 @@
-@import "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
 body{
     margin-top:20px;
@@ -314,4 +313,7 @@ input {
     font-size: 28px;
     text-align: center;
     font-weight: bold;
+}
+.notFoundButton{
+    background-color: #46be8a;
 }

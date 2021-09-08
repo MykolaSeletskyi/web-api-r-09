@@ -77,18 +77,14 @@ class App extends Component {
   render() {
     const { ContactList } = this.state;
     return (
-      <div className="container bootstrap snippets bootdeys bootdey" >
-        <div className="row decor-default">
-          <Router>
-            <Switch>
-              <Route path="/" exact render={() => (<Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
-              <Route path="/add-new-contact" exact component={AddNewContact} />
-              <Route path="*" component={NotFound} />
-            </Switch>
-          </Router>
 
-        </div>
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/" exact render={() => (<Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
+          <Route path="/add-new-contact" exact component={AddNewContact} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </Router>
     )
   }
 }

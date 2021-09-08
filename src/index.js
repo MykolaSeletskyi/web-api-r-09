@@ -1,10 +1,13 @@
 import ReactDOM from "react-dom";
 import { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+// Import styles
 import "./index.css";
 
 // Import Components
-import SideBar from "./Components/SideBar/SideBar";
 import Main from "./Components/Main/Main";
+import NotFound from "./Components/NotFound/NotFound";
 
 class App extends Component {
 
@@ -74,8 +77,13 @@ class App extends Component {
     return (
       <div className="container bootstrap snippets bootdeys bootdey" >
         <div className="row decor-default">
-          <SideBar />
-          <Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />
+          <Router>
+            <Switch>
+              <Route path="/" exact render={() => (<Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </Router>
+
         </div>
       </div>
     )

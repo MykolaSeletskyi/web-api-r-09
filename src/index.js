@@ -18,25 +18,28 @@ class App extends Component {
       {
         Id: 1,
         Name: "Alexander Verdnam",
-        Image: "https://api.randomuser.me/portraits/men/5.jpg",
+        Image: 5,
         Phone: "+1-800-600-9898",
         Email: "example@gmail.com",
+        Gender: "men",
         Status: "Friend"
       },
       {
         Id: 2,
         Name: "Gerard Butler",
-        Image: "https://api.randomuser.me/portraits/men/82.jpg",
+        Image: 82,
         Phone: "+1-800-480-9348",
         Email: "gb@gmail.com",
+        Gender: "men",
         Status: "Work"
       },
       {
         Id: 3,
         Name: "Anna Lee",
-        Image: "https://api.randomuser.me/portraits/women/43.jpg",
+        Image: 43,
         Phone: "+1-800-091-1234",
         Email: "lee@gmail.com",
+        Gender: "women",
         Status: "Private"
       }
     ]
@@ -71,6 +74,10 @@ class App extends Component {
     this.setState({
       ContactList: tmpList
     })
+
+  }
+
+  onCreateContact = () => {
 
   }
 

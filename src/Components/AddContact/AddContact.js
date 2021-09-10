@@ -1,30 +1,108 @@
 import { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class AddContact extends Component {
 
     state = {
         Name: "",
-        Image: "",
+        Image: null,
         Phone: "",
+        Gender: "",
         Email: "",
-        Status: ""
+        Status: "",
+        isRedirect: false
     }
 
+    onGetName = (e) => {
+        const name = e.target.value
+        this.setState({
+            Name: name
+        })
+    }
+
+    onGetPhone = (e) => {
+        const phone = e.target.value
+        this.setState({
+            Phone: phone
+        });
+    }
+
+    onGetEmail = (e) => {
+        const email = e.target.value
+        this.setState({
+            Email: email
+        });
+    }
+
+    onGetGender = (e) => {
+        const gender = e.target.value
+        this.setState({
+            Gender: gender
+        });
+    }
+
+    onGetStatus = (e) => {
+        const status = e.target.value
+        this.setState({
+            Status: status
+        });
+    }
+
+    onGetAvatar = (e) => {
+        const avatar = e.target.value
+        this.setState({
+            Image: avatar
+        });
+    }
+
+    onCreateContact = (e) => {
+        e.preventDefault();
+        const { Name, Image, Phone, Gender, Email, Status } = this.state;
+
+        const newContact = {
+            Name,
+            Image,
+            Phone,
+            Gender,
+            Email,
+            Status
+        }
+
+        console.log(newContact)
+
+        this.setState({
+            isRedirect: true
+        })
+    }
+
+
+
     render() {
+        let { Gender, Image, isRedirect } = this.state;
+
+        if (isRedirect === true) {
+            return <Redirect to="/" />
+        }
+
+        if (Image === null || Image == "") {
+            Image = "https://upload.wikimedia.org/wikipedia/commons/5/50/User_icon-cp.svg";
+        } else {
+            Image = `https://api.randomuser.me/portraits/${Gender}/${Image}.jpg`;
+        }
+
         return (
             <Fragment>
                 <div className="container">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <Link class="navbar-brand" to="/">Contact list</Link>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <Link className="navbar-brand" to="/">Contact list</Link>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <Link class="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item active">
+                                    <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
                                 </li>
                             </ul>
                         </div>
@@ -39,26 +117,30 @@ class AddContact extends Component {
                     <div className="row">
 
                         <div className="col-8">
-                            <form>
-                                <div class="form-group">
-                                    <label for="Name">Name</label>
-                                    <input name="Name" type="text" class="form-control" />
+                            <form onSubmit={this.onCreateContact}>
+                                <div className="form-group">
+                                    <label htmlFor="Name">Name</label>
+                                    <input name="Name" type="text" className="form-control" onChange={this.onGetName} />
                                 </div>
-                                <div class="form-group">
-                                    <label for="Phone">Phone</label>
-                                    <input name="Phone" type="tel" class="form-control" />
+                                <div className="form-group">
+                                    <label htmlFor="Phone">Phone</label>
+                                    <input name="Phone" type="tel" className="form-control" onChange={this.onGetPhone} />
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input type="email" class="form-control" />
+                                <div className="form-group">
+                                    <label htmlFor="email">Email address</label>
+                                    <input type="email" className="form-control" onChange={this.onGetEmail} />
                                 </div>
-                                <div class="form-group">
-                                    <label for="Avatar">Avatar</label>
-                                    <input type="number" class="form-control" />
+                                <div className="form-group">
+                                    <label htmlFor="Status">Gender</label>
+                                    <select className="custom-select" onChange={this.onGetGender}>
+                                        <option selected>Choose...</option>
+                                        <option value="men">Men</option>
+                                        <option value="women">Women</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Status">Status</label>
-                                    <select class="custom-select">
+                                <div className="form-group">
+                                    <label htmlFor="Status">Status</label>
+                                    <select className="custom-select" onChange={this.onGetStatus}>
                                         <option selected>Choose...</option>
                                         <option value="2">Work</option>
                                         <option value="4">Family</option>
@@ -66,11 +148,15 @@ class AddContact extends Component {
                                         <option value="1">Friend</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Add new</button>
+                                <div className="form-group">
+                                    <label htmlFor="Avatar">Avatar</label>
+                                    <input type="number" min="0" max="99" className="form-control" onChange={this.onGetAvatar} />
+                                </div>
+                                <button type="submit" className="btn btn-primary">Add new</button>
                             </form>
                         </div>
                         <div className="col-4">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/User_icon-cp.svg" class="rounded float-left" alt="..." />
+                            <img src={Image} className="rounded avatar float-left" alt="..." />
                         </div>
                     </div>
                 </div>

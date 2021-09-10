@@ -1,4 +1,4 @@
-const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus, onDelete }) => {
+const ContactItem = ({ Name, Image, Email, Status, Phone, Gender, onChangeStatus, onDelete }) => {
 
     let defaultStatusColor = ""
 
@@ -12,6 +12,8 @@ const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus, onDele
         case "Private": defaultStatusColor = "lab lab-danger"
     }
 
+    const imageURL = `https://api.randomuser.me/portraits/${Gender}/${Image}.jpg`;
+
     return (
         <div className="unit">
             <div className="field name">
@@ -22,7 +24,7 @@ const ContactItem = ({ Name, Image, Email, Status, Phone, onChangeStatus, onDele
 
                 </div>
                 <div>
-                    <img src={Image} alt="image" className="avatar" /> {Name}
+                    <img src={imageURL} alt="image" className="avatar" /> {Name}
                 </div>
                 <div className={defaultStatusColor} onClick={onChangeStatus} >{Status}</div>
             </div>

@@ -1,5 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+
 
 class AddContact extends Component {
 
@@ -59,7 +61,9 @@ class AddContact extends Component {
         e.preventDefault();
         const { Name, Image, Phone, Gender, Email, Status } = this.state;
 
+        const { onCreateContact } = this.props;
         const newContact = {
+            Id: uuidv4(),
             Name,
             Image,
             Phone,
@@ -68,7 +72,7 @@ class AddContact extends Component {
             Status
         }
 
-        console.log(newContact)
+        onCreateContact(newContact)
 
         this.setState({
             isRedirect: true

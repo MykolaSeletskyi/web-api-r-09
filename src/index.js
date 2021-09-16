@@ -11,6 +11,7 @@ import "./index.css";
 import Main from "./Components/Main/Main";
 import NotFound from "./Components/NotFound/NotFound";
 import AddNewContact from "./Components/AddContact/AddContact";
+import EditContact from "./Components/EditContact/EditContact";
 
 class App extends Component {
 
@@ -43,7 +44,8 @@ class App extends Component {
         Gender: "women",
         Status: "Private"
       }
-    ]
+    ],
+    CurrentContact: ""
   }
 
   onChangeStatus = (Id) => {
@@ -79,17 +81,32 @@ class App extends Component {
   }
 
   onCreateContact = (newContact) => {
-    console.log("new contacrt ", newContact)
+    const tmpList = this.state.ContactList.slice();
+    tmpList.unshift(newContact);
+    this.setState({
+      ContactList: tmpList
+    })
+  }
+
+  onGetCurrentContact = (Id) => {
+    const index = this.state.ContactList.findIndex(elem => elem.Id === Id);
+    const tmpList = this.state.ContactList.slice()
+
+    const currentContact = tmpList[index];
+    this.setState({
+      CurrentContact: currentContact
+    })
   }
 
   render() {
-    const { ContactList } = this.state;
+    const { ContactList, CurrentContact } = this.state;
     return (
 
       <Router>
         <Switch>
-          <Route path="/" exact render={() => (<Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
+          <Route path="/" exact render={() => (<Main List={ContactList} onGetCurrentContact={this.onGetCurrentContact} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
           <Route path="/add-new-contact" exact render={() => (<AddNewContact onCreateContact={this.onCreateContact} />)} />
+          <Route path="/edit-contact" exact render={() => (<EditContact CurrentContact={CurrentContact} />)} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

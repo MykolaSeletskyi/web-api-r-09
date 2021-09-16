@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
 
-class AddContact extends Component {
+class EditContact extends Component {
 
     state = {
         Name: "",
@@ -82,7 +82,10 @@ class AddContact extends Component {
 
 
     render() {
-        let { Gender, Image, isRedirect } = this.state;
+        console.log("Edit contact PROPS => ", this.props)
+        let { Gender, Image, Name, Phone, Status, Email } = this.props.CurrentContact;
+        const avatar = Image;
+        let { isRedirect } = this.state;
 
         if (isRedirect === true) {
             return <Redirect to="/" />
@@ -115,7 +118,7 @@ class AddContact extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                            <h2>Add new contact</h2>
+                            <h2>Edit contact</h2>
                         </div>
                     </div>
                     <div className="row">
@@ -124,20 +127,20 @@ class AddContact extends Component {
                             <form onSubmit={this.onCreateContact}>
                                 <div className="form-group">
                                     <label htmlFor="Name">Name</label>
-                                    <input name="Name" type="text" required className="form-control" onChange={this.onGetName} />
+                                    <input name="Name" type="text" defaultValue={Name} required className="form-control" onChange={this.onGetName} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="Phone">Phone</label>
-                                    <input name="Phone" type="tel" required className="form-control" onChange={this.onGetPhone} />
+                                    <input name="Phone" type="tel" defaultValue={Phone} required className="form-control" onChange={this.onGetPhone} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="email">Email address</label>
-                                    <input type="email" className="form-control" required onChange={this.onGetEmail} />
+                                    <input type="email" className="form-control" defaultValue={Email} required onChange={this.onGetEmail} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="Status">Gender</label>
                                     <select className="custom-select" onChange={this.onGetGender}>
-                                        <option defaultValue>Choose...</option>
+                                        <option defaultValue>{Gender}</option>
                                         <option value="men">Men</option>
                                         <option value="women">Women</option>
                                     </select>
@@ -145,7 +148,7 @@ class AddContact extends Component {
                                 <div className="form-group">
                                     <label htmlFor="Status">Status</label>
                                     <select className="custom-select" onChange={this.onGetStatus}>
-                                        <option defaultValue>Choose...</option>
+                                        <option defaultValue>{Status}</option>
                                         <option value="Work">Work</option>
                                         <option value="Family">Family</option>
                                         <option value="Private">Private</option>
@@ -154,9 +157,9 @@ class AddContact extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="Avatar">Avatar</label>
-                                    <input type="number" min="0" max="99" className="form-control" onChange={this.onGetAvatar} />
+                                    <input type="number" min="0" max="99" defaultValue={avatar} className="form-control" onChange={this.onGetAvatar} />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Add new</button>
+                                <button type="submit" className="btn btn-primary">Save</button>
                             </form>
                         </div>
                         <div className="col-4">
@@ -169,4 +172,4 @@ class AddContact extends Component {
     }
 }
 
-export default AddContact;
+export default EditContact;

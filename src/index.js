@@ -44,9 +44,10 @@ class App extends Component {
         Gender: "women",
         Status: "Private"
       }
-    ],
+    ],    
     CurrentContact: ""
   }
+  
 
   onChangeStatus = (Id) => {
     const index = this.state.ContactList.findIndex(elem => elem.Id === Id);
@@ -87,7 +88,14 @@ class App extends Component {
       ContactList: tmpList
     })
   }
-
+  onChangeContact = (Contact) => {
+    const tmpList = this.state.ContactList.slice();
+    const index=tmpList.findIndex(i=>i.Id===Contact.Id);
+    tmpList[index]=Contact;
+    this.setState({
+      ContactList: tmpList
+    })
+  }
   onGetCurrentContact = (Id) => {
     const index = this.state.ContactList.findIndex(elem => elem.Id === Id);
     const tmpList = this.state.ContactList.slice()
@@ -99,14 +107,15 @@ class App extends Component {
   }
 
   render() {
-    const { ContactList, CurrentContact } = this.state;
+    const { ContactList, CurrentContact,StatusCounts } = this.state;
+    console.log(StatusCounts);
     return (
 
       <Router>
         <Switch>
-          <Route path="/" exact render={() => (<Main List={ContactList} onGetCurrentContact={this.onGetCurrentContact} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
+          <Route path="/" exact render={() => (<Main List={ContactList} StatusCounts={StatusCounts} onGetCurrentContact={this.onGetCurrentContact} onGetCurrentStatus={this.onGetCurrentStatus} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />)} />
           <Route path="/add-new-contact" exact render={() => (<AddNewContact onCreateContact={this.onCreateContact} />)} />
-          <Route path="/edit-contact" exact render={() => (<EditContact CurrentContact={CurrentContact} />)} />
+          <Route path="/edit-contact" exact render={() => (<EditContact CurrentContact={CurrentContact} onChangeContact={this.onChangeContact}/>)} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

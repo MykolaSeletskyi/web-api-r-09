@@ -10,7 +10,7 @@ const Main = ({ List, onChangeStatus, onDelete, onGetCurrentContact }) => {
         <Fragment>
             <div className="container bootstrap snippets bootdeys bootdey" >
                 <div className="row decor-default">
-                    <SideBar contactsCounter={contactsCounter} />
+                    <SideBar contactsCounter={contactsCounter}  Work={List.filter(i => i.Status == "Work").length} Family={List.filter(i => i.Status == "Family").length} Private={List.filter(i => i.Status == "Private").length} Friend={List.filter(i => i.Status == "Friend").length}/>
                     <div className="col-lg-9 col-md-8 col-sm-12">
                         <div className="contacts-list">
                             <Link to="/add-new-contact" className="title">Add New Contact</Link>

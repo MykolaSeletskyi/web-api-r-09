@@ -6,12 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 class EditContact extends Component {
 
     state = {
-        Name: "",
-        Image: null,
-        Phone: "",
-        Gender: "",
-        Email: "",
-        Status: "",
+        Id:this.props.CurrentContact.Id,
+        Name: this.props.CurrentContact.Name,
+        Image: this.props.CurrentContact.Image,
+        Phone: this.props.CurrentContact.Phone,
+        Gender: this.props.CurrentContact.Gender,
+        Email: this.props.CurrentContact.Email,
+        Status: this.props.CurrentContact.Status,
         isRedirect: false
     }
 
@@ -57,13 +58,12 @@ class EditContact extends Component {
         });
     }
 
-    onCreateContact = (e) => {
+    onChangeContact = (e) => {
         e.preventDefault();
-        const { Name, Image, Phone, Gender, Email, Status } = this.state;
-
-        const { onCreateContact } = this.props;
-        const newContact = {
-            Id: uuidv4(),
+        const { Id, Name, Image, Phone, Gender, Email, Status } = this.state;
+        const { onChangeContact } = this.props;
+        const updateContact = {
+            Id,
             Name,
             Image,
             Phone,
@@ -71,9 +71,7 @@ class EditContact extends Component {
             Email,
             Status
         }
-
-        onCreateContact(newContact)
-
+        onChangeContact(updateContact)
         this.setState({
             isRedirect: true
         })
@@ -83,7 +81,7 @@ class EditContact extends Component {
 
     render() {
         console.log("Edit contact PROPS => ", this.props)
-        let { Gender, Image, Name, Phone, Status, Email } = this.props.CurrentContact;
+        let {Gender, Image, Name, Phone, Status, Email } = this.props.CurrentContact;
         const avatar = Image;
         let { isRedirect } = this.state;
 
@@ -124,7 +122,7 @@ class EditContact extends Component {
                     <div className="row">
 
                         <div className="col-8">
-                            <form onSubmit={this.onCreateContact}>
+                            <form onSubmit={this.onChangeContact}>
                                 <div className="form-group">
                                     <label htmlFor="Name">Name</label>
                                     <input name="Name" type="text" defaultValue={Name} required className="form-control" onChange={this.onGetName} />
